@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
-const WeatherCard = (coordinates) => {
+const WeatherCard = ({ coordinates, onWeatherStringChange }) => {
   const [weather, setWeather] = useState(null);
   const [timeLabel, setTimeLabel] = useState(null);
   const [weatherString, setWeatherString] = useState(null);
 
   useEffect(() => {
-    if (coordinates.coordinates.latitude && !weather) {
-      fetchWeatherData(coordinates.coordinates);
+    if (coordinates.latitude && !weather) {
+      fetchWeatherData(coordinates);
     }
   }, [weather, coordinates])
 
@@ -48,6 +48,9 @@ const WeatherCard = (coordinates) => {
         setWeatherString("Hot");
       }
     }
+    if (weatherString){
+      onWeatherStringChange(weatherString);
+    }
     return weatherString;
   }
 
@@ -65,7 +68,6 @@ const WeatherCard = (coordinates) => {
           <div className="text-3xl font-bold text-white mb-6">{weather?.current.temperature_2m}º</div>
         </div>
       </div>
-      <pre>{JSON.stringify(weather, null, 2)}</pre>
     </>
   )
 }

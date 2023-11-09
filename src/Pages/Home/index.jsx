@@ -5,13 +5,21 @@ import SpotifyCard from '../../Components/SpotifyCard';
 import { useGeolocation } from "@uidotdev/usehooks";
 
 function Home() {
-
     const coordinates = useGeolocation();
+
+    const [weatherString, setWeatherString] = useState('');
+
+    const handleWeatherStringChange = (newWeatherString) => {
+        setWeatherString(newWeatherString);
+    }
 
     return (
         <Layout>
-            <SpotifyCard />
-            {coordinates && <WeatherCard coordinates={coordinates} />}
+            {coordinates && 
+            <WeatherCard 
+                coordinates={coordinates} 
+                onWeatherStringChange={handleWeatherStringChange}/>}
+            <SpotifyCard weatherString={weatherString}/>
         </Layout>
     )
 }

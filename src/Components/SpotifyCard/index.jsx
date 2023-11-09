@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-// UI constants
-const SEARCH_DISPLAY_TEXT = "Displaying results for: ";
+import PlaylistWidget from '../PlaylistWidget';
 
-const SpotifyCard = (clientid, clientsecret) => { //placeholders for now
+const SpotifyCard = ({ weatherString }) => {
     const CLIENT_ID = "2a48389502964b2b979b6968080ace17"
     const REDIRECT_URI = "http://localhost:5173/"
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
@@ -15,16 +14,18 @@ const SpotifyCard = (clientid, clientsecret) => { //placeholders for now
     useEffect(() => {
         const params = new URLSearchParams(window.location.hash.slice(1));
         const access_token = params.get('access_token');
-
         if (access_token) {
             setAccessToken(access_token);
-            searchPlaylists('rainy', access_token);
         } else {
-            window.location.href = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${scope}&response_type=token`;
+            window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${scope}&response_type=token`;
         }
-    }, []);
+        if (weatherString) {
+            searchPlaylists(weatherString + " day", access_token);
+        }
 
-    async function searchPlaylists(query, accessToken) {https://api.spotify.com/v1/search?q=rainy&type=playlist'
+    }, [weatherString]);
+
+    async function searchPlaylists(query, accessToken) {
         try {
             const response = await fetch(`https://api.spotify.com/v1/search?q=${query}&type=playlist`, {
                 method: 'GET',
@@ -34,7 +35,6 @@ const SpotifyCard = (clientid, clientsecret) => { //placeholders for now
                 }
             });
             const data = await response.json();
-            
             setPlaylist(data.playlists.items[0])
             return data.playlists.items[0];
         } catch (error) {
@@ -44,8 +44,17 @@ const SpotifyCard = (clientid, clientsecret) => { //placeholders for now
 
     return (
         <div>
-            {accessToken ? (
-                <div>Logged in with access token: {accessToken}</div>
+            {accessToken && playlist ? (
+                <div>
+                    <iframe
+                        title="Spotify"
+                        className="SpotifyPlayer"
+                        src={`https://embed.spotify.com/?uri=${playlist.uri}&view=list&theme=white`}
+                        width="800"
+                        height="600"
+                        allowtransparency="true"
+                    />
+                </div>
             ) : (
                 <div>Loading...</div>
             )}

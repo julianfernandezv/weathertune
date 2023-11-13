@@ -17,7 +17,7 @@ const SpotifyCard = ({ weatherString }) => {
         if (access_token) {
             setAccessToken(access_token);
         } else {
-            window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${scope}&response_type=token`;
+            window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${scope}&response_type=token`;
         }
         if (weatherString) {
             searchPlaylists(weatherString + " day", access_token);

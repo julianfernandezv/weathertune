@@ -19,7 +19,7 @@ function Home() {
             <WeatherCard 
                 coordinates={coordinates} 
                 onWeatherStringChange={handleWeatherStringChange}/>}
-            <SpotifyCard weatherString={weatherString}/>
+            {/* <SpotifyCard weatherString={weatherString}/> */}
         </Layout>
     )
 }

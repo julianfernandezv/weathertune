@@ -3,7 +3,6 @@ import PlaylistWidget from '../PlaylistWidget';
 
 const SpotifyCard = ({ weatherString }) => {
     const CLIENT_ID = "2a48389502964b2b979b6968080ace17"
-    const REDIRECT_URI = `${window.location.origin}/`
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
     const scope = 'user-read-private user-read-email';

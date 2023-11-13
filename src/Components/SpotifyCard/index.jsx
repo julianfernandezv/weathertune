@@ -3,6 +3,7 @@ import PlaylistWidget from '../PlaylistWidget';
 
 const SpotifyCard = ({ weatherString }) => {
     const CLIENT_ID = "2a48389502964b2b979b6968080ace17"
+    const REDIRECT_URI = `${window.location.origin}/`
     const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
     const RESPONSE_TYPE = "token"
     const scope = 'user-read-private user-read-email';
@@ -16,7 +17,7 @@ const SpotifyCard = ({ weatherString }) => {
         if (access_token) {
             setAccessToken(access_token);
         } else {
-            window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&scope=${scope}&response_type=token`;
+            window.location.href = `${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${scope}&response_type=token`;
         }
         if (weatherString) {
             searchPlaylists(weatherString + " day", access_token);

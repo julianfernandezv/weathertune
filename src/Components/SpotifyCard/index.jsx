@@ -14,6 +14,7 @@ const SpotifyCard = ({ weatherString }) => {
     useEffect(() => {
         const params = new URLSearchParams(window.location.hash.slice(1));
         const access_token = params.get('access_token');
+        
         if (access_token) {
             setAccessToken(access_token);
         } else {

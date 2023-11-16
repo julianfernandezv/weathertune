@@ -14,8 +14,6 @@ function Contact() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
-        // You can add your form submission logic here
     };
 
     return (

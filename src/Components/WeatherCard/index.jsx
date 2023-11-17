@@ -55,20 +55,19 @@ const WeatherCard = ({ coordinates, onWeatherStringChange }) => {
   }
 
   return (
-    <>
-      <div className="m-10 items-center flex flex-col md:flex-row md:justify-center">
-        <div className="w-64 md:mr-20 mb-10 transition duration-500 ease-in-out transform rounded-lg hover:scale-105 cursor-pointer border b-gray-400 rounded flex flex-col justify-center items-center text-center p-6 bg-gray-900">
-          <div className="text-md font-bold flex flex-col text-white">
-            <span className="font-normal text-white text-3xl text-sm">{timeLabel?.date}</span>
-            <span className="font-normal text-white text-3xl text-sm">{timeLabel?.time}</span>
-          </div>
-          <div className="w-32 h-32 flex items-center justify-center">
-            <div className="text-3xl font-bold text-white mb-6">{getWeatherString()}</div>
-          </div>
-          <div className="text-3xl font-bold text-white mb-6">{weather?.current.temperature_2m}º</div>
-        </div>
+<>
+  <div className="h-screen w-screen flex items-center justify-center b-gray-400 rounded flex flex-col justify-center items-center text-center p-6 bg-gray-900">
+      <div className="text-md font-bold flex flex-col text-white">
+        <span className="font-normal text-white text-3xl text-sm">{timeLabel?.date}</span>
+        <span className="font-normal text-white text-3xl text-sm">{timeLabel?.time}</span>
       </div>
-    </>
+      <div className="w-32 h-32 flex items-center justify-center">
+        <div className="text-3xl font-bold text-white mb-6">{getWeatherString()}</div>
+      </div>
+      <div className="text-3xl font-bold text-white mb-6">{weather?.current.temperature_2m}º</div>
+    </div>
+</>
+
   )
 }
 

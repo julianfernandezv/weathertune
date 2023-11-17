@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Layout from '../../Components/Layout'
 import WeatherCard from '../../Components/WeatherCard';
-import SpotifyCard from '../../Components/SpotifyCard';
 import { useGeolocation } from "@uidotdev/usehooks";
 
 function Home() {
@@ -19,7 +18,6 @@ function Home() {
             <WeatherCard 
                 coordinates={coordinates} 
                 onWeatherStringChange={handleWeatherStringChange}/>}
-            {/* <SpotifyCard weatherString={weatherString}/> */}
         </Layout>
     )
 }
